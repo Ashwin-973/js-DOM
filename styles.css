@@ -1,32 +1,65 @@
 *{
+    box-sizing: border-box;
     margin : 0px;
     padding:0px;
 }
-
-
-
-.modal-container{
-    padding:84px;
+img{
+    max-width:70%;
+    /* height:auto; */
+}
+p{
+    font-size:18px;
+    font-weight:500;
+}
+.container{
+    padding-block:84px;
     display:flex;
     flex-direction: column;
     align-items:center;
-    gap:48px;
 }
 
 .modal-button{
     padding-block:32px;
     padding-inline:128px;
+    color:#ffb700;
+    font-size:24px;
+    font-weight:600;
+    letter-spacing: 0.8px;
+    border:none;
+    border-radius:16px;
+    background-color: #000000;
 }   
+.modal-button:hover{
+    background-color:hsla(0, 0%, 0%, 0.6);
+}
+.modal-container{
+    position:fixed; /*positioned wrt viewport*/
+    inset:0;
+    display:none; /* Hidden by default */
+    background-color:hsla(0, 0%, 0%, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index:1000;
+}
+
 
 .modal{
-    min-height:45vh;
-    display:none;
-    border-width:2px;
+    height:70%;
+    /* max-height:50vh; */
+    width:55%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+    border-width:4px;
     border-color:#73823c;
+    background-color: #fff;
     border-style:solid;
-    padding:32px;
+    padding-block:48px;
+    padding-inline:16px;
     border-radius:16px;
-    position:relative;
+    position:relative; /*again positioned relative to viewport*/
 }
 .close{
     font-size:20px;
@@ -34,6 +67,7 @@
     top:16px;
     right:18px;
     z-index:1;
+    cursor:pointer;
 }
 .text-content{
     margin-block:auto; /*margin's on vertical axis resolve to 0 when display is block*/
