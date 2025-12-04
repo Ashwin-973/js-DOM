@@ -1,0 +1,40 @@
+*{
+    margin : 0px;
+    padding:0px;
+}
+
+
+
+.modal-container{
+    padding:84px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    gap:48px;
+}
+
+.modal-button{
+    padding-block:32px;
+    padding-inline:128px;
+}   
+
+.modal{
+    min-height:45vh;
+    display:none;
+    border-width:2px;
+    border-color:#73823c;
+    border-style:solid;
+    padding:32px;
+    border-radius:16px;
+    position:relative;
+}
+.close{
+    font-size:20px;
+    position:absolute;
+    top:16px;
+    right:18px;
+    z-index:1;
+}
+.text-content{
+    margin-block:auto; /*margin's on vertical axis resolve to 0 when display is block*/
+}
