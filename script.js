@@ -36,3 +36,10 @@ modalContainer.addEventListener('click',(e)=>{
         toggleModal();
     }
 })
+
+document.addEventListener('keydown',(e)=>
+{
+    if(e.key='Escape' && isOpen){
+        toggleModal();
+    }
+})
