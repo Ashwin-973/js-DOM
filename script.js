@@ -49,6 +49,7 @@ let status=document.querySelector('.status');
 const fragment=new DocumentFragment();
 
 const fetchButton=document.querySelector('.fetch-button');
+dataDisplay.append(orderedList);
 let data=null;
 
 const STATE={
@@ -58,38 +59,18 @@ const STATE={
     ERROR : 'error'
 }
 
-let currentState=STATE.IDLE;
 
-function setState(currentState,message={}){
-    currentState=currentState;
+function setState(currentState,message=""){
+    status.innerText=message || currentState.toUpperCase();
+    status.className=`status ${currentState}`
 
-    switch(currentState){
-        case 'idle':
-            status.innerText='IDLE';
-            status.className=`status ${currentState}`;
-            break;
-        case 'loading':
-            status.innerText='LOADING';
-            status.className=`status ${currentState}`;
-            break;
-        case 'success':
-            status.innerText='SUCCESS';
-            status.className=`status ${currentState}`;
-            break;
-        case 'error':
-            status.innerText='ERROR';
-            status.className=`status ${currentState}`;
-            break;
-        default :
-            status.innerText='IDLE';
-            status.className=`status idle`;
-            break;
+    fetchButton.disabled=(status.className===STATE.LOADING)
 
-    }
 }
 
+setState(STATE.IDLE);
+
 async function fetchData(e){
-    setState(STATE.IDLE);
     try{
         setState(STATE.LOADING);
         let response= await fetch('https://dummyjson.com/products?limit=10');
@@ -100,30 +81,29 @@ async function fetchData(e){
         if(!data){
             setState(STATE.ERROR);
         }
+        createList(data?.products);
         setState(STATE.SUCCESS);
+        setTimeout(()=>setState(STATE.IDLE),3000);
         console.log(data);
         return null;
     }
 catch(e){
-    setState(STATE.ERROR);
     if(e instanceof SyntaxError){
         console.log('json parse failed : Malformed JSON',e)  //handled malformed JSON
     }
     else{
         console.log(e.message,e);
     }
+    setState(STATE.ERROR);
 
-}finally{
-    setTimeout(()=>setState(STATE.IDLE),3000);
-    createList(data?.products);
 }
 }
 
 function createList(data){
 
-    if(!data) return; 
+    orderedList.replaceChildren();
 
-    dataDisplay.append(orderedList);
+    if(!data) return; 
 
     for(i of data){
         const listIndex=document.createElement('li');
@@ -136,8 +116,5 @@ function createList(data){
     return;
 
 }
-
-
-
 
 fetchButton.addEventListener('click',fetchData)
