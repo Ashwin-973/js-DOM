@@ -7,6 +7,12 @@ img{
     max-width:70%;
     /* height:auto; */
 }
+h2{
+    margin-block:24px;
+    font-size:40px;
+    font-weight:500;
+
+}
 p{
     font-size:18px;
     font-weight:500;
@@ -14,14 +20,14 @@ p{
 
 /*TODO : review and refine code*/
 /*TODO : use classList toggle*/
-.container{
-    padding-block:84px;
+.container,.fetch-container{
+    padding-block:60px;
     display:flex;
     flex-direction: column;
     align-items:center;
 }
 
-.modal-button{
+.modal-button,.fetch-button{
     padding-block:32px;
     padding-inline:128px;
     color:#ffb700;
@@ -32,7 +38,7 @@ p{
     border-radius:16px;
     background-color: #000000;
 }   
-.modal-button:hover{
+.modal-button:hover,.fetch-button:hover{
     background-color:hsla(0, 0%, 0%, 0.6);
 }
 .modal-container{
@@ -74,4 +80,17 @@ p{
 }
 .text-content{
     margin-block:auto; /*margin's on vertical axis resolve to 0 when display is block*/
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+ol{
+    color:#7bd34e;
+    margin-block-start:32px;
+    display:flex;
+    flex-direction: column;
+    align-items:start;
+    gap:12px;
+    font-size:22px;
+    font-weight:300;
 }
