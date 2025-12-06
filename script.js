@@ -45,22 +45,67 @@ document.addEventListener('keydown',(e)=>
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
 const orderedList=document.createElement('ol');
 const dataDisplay=document.getElementById('display-data');
+let status=document.querySelector('.status');
 const fragment=new DocumentFragment();
 
 const fetchButton=document.querySelector('.fetch-button');
 let data=null;
 
+const STATE={
+    IDLE : 'idle' ,
+    LOADING : 'loading',
+    SUCCESS: 'success',
+    ERROR : 'error'
+}
+
+let currentState=STATE.IDLE;
+
+function setState(currentState,message={}){
+    currentState=currentState;
+
+    switch(currentState){
+        case 'idle':
+            status.innerText='IDLE';
+            status.className=`status ${currentState}`;
+            break;
+        case 'loading':
+            status.innerText='LOADING';
+            status.className=`status ${currentState}`;
+            break;
+        case 'success':
+            status.innerText='SUCCESS';
+            status.className=`status ${currentState}`;
+            break;
+        case 'error':
+            status.innerText='ERROR';
+            status.className=`status ${currentState}`;
+            break;
+        default :
+            status.innerText='IDLE';
+            status.className=`status idle`;
+            break;
+
+    }
+}
+
 async function fetchData(e){
+    setState(STATE.IDLE);
     try{
+        setState(STATE.LOADING);
         let response= await fetch('https://dummyjson.com/products?limit=10');
         if(!response.ok){
             throw new Error(`received invalid status code : ${response.status}`)
         }
         data=await response.json(); 
+        if(!data){
+            setState(STATE.ERROR);
+        }
+        setState(STATE.SUCCESS);
         console.log(data);
         return null;
     }
 catch(e){
+    setState(STATE.ERROR);
     if(e instanceof SyntaxError){
         console.log('json parse failed : Malformed JSON',e)  //handled malformed JSON
     }
@@ -69,6 +114,7 @@ catch(e){
     }
 
 }finally{
+    setTimeout(()=>setState(STATE.IDLE),3000);
     createList(data?.products);
 }
 }
@@ -81,7 +127,7 @@ function createList(data){
 
     for(i of data){
         const listIndex=document.createElement('li');
-        listIndex.innerText=i?.title ?? 'Unknown Product';  //handled validation
+        listIndex.innerText=i?.title ?? 'Unknown Product';  //handled validation without any libraries
         fragment.append(listIndex);
     }
 

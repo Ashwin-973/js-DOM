@@ -94,3 +94,31 @@ ol{
     font-size:22px;
     font-weight:300;
 }
+
+.status{
+    margin-block:16px;
+    padding-block:16px;
+    padding-inline:48px;
+    font-size:18px;
+
+    border-radius: 8px;
+}
+.idle{
+    background-color:hsla(360, 0%, 28.8%,0.4) ;
+    color:hsl(360, 0%, 28.8%);
+}
+.loading{
+    background-color:hsla(177, 99.4%, 62.2%,0.4) ;
+    color:hsl(177 99.4% 62.2%);
+}
+.success{
+    background-color:hsla(124, 99.4% ,50.3%,0.4);
+    color:hsl(124 99.4% 50.3%) ;
+    
+
+}
+.error{
+    background-color : hsla(7 ,98.5%, 50.6%,0.4);
+    color:hsl(7 98.5% 50.6%);
+
+}
