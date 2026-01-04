@@ -120,3 +120,57 @@ function createList(data){
 fetchButton.addEventListener('click',fetchData)
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+const cards=document.querySelectorAll('.card');
+const cardContainer=document.querySelector('.cards-wrapper')
+
+const options={
+    threshold:1,
+    rootMargin:'0px'
+}
+
+const observerCallback=(entries,observer)=>
+{
+    entries.forEach((entry)=>
+    {
+        entry.target.classList.toggle("show",entry.isIntersecting)
+        // if(entry.isIntersecting) observer.unobserve(entry.target)
+    })
+}
+
+
+
+function loadNewCards(){
+
+    for(let i=0;i<6;i++){
+        const div=document.createElement('div');
+        div.textContent="Normal Card"
+        div.classList.add('card')
+        observer.observe(div)
+        cardContainer.append(div)
+    }
+    
+}
+
+const lastCardObserverCallback=(entries,observer)=>
+{
+    const entry=entries[0];
+    if(!entry.isIntersecting) return;
+    loadNewCards()
+    observer.unobserve(entry.target)
+    observer.observe(document.querySelector('.card:last-child'))
+}
+
+
+
+const observer=new IntersectionObserver(observerCallback,options)
+
+const lastCardObserver=new IntersectionObserver(lastCardObserverCallback)
+
+
+
+cards.forEach((card)=>{
+    observer.observe(card)
+})
+
+lastCardObserver.observe(document.querySelector('.card:last-child'))
