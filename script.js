@@ -174,3 +174,35 @@ cards.forEach((card)=>{
 })
 
 lastCardObserver.observe(document.querySelector('.card:last-child'))
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+const header=document.querySelector('header')
+
+let lastScrollY=window.scrollY;
+
+
+function modifyHeader(){
+    
+    const currentScrollY=window.scrollY;
+
+    //prevent rubber banding
+    if(currentScrollY<=0){
+        header.classList.remove("hide")
+        return;
+    }
+
+    if(currentScrollY>lastScrollY){
+        header.classList.add("hide")
+    }
+    else if(currentScrollY<lastScrollY){
+        header.classList.remove("hide")
+    }
+
+    lastScrollY=currentScrollY;
+
+}
+
+
+
+window.addEventListener('scroll',modifyHeader,{passive:true})

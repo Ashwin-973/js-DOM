@@ -18,8 +18,38 @@ p{
     font-weight:500;
 }
 
+body{
+    background-color:hsl(127, 40%, 8%);
+    color:white;
+}
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+.smart-header{
+    width:100%;
+    font-size:32px;
+    display:grid;
+    place-content:center;
+    padding:24px;
+    position:sticky;
+    top:0;
+    left:0;
+    /* border-bottom:1px solid white;    */
+    transform: scale(1);
+    opacity: 1;
+    transition:all 300ms ease-in-out;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+    /* background-color:hsl(127, 40%, 8%); */
+}
+
+.smart-header.hide{
+    opacity:0;
+    transform:translateY(-100%) scale(0.95);
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
 /*TODO : review and refine code*/
 /*TODO : use classList toggle*/
+
 .container,.fetch-container{
     padding-block:60px;
     display:flex;
