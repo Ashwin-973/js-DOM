@@ -156,7 +156,7 @@ const lastCardObserverCallback=(entries,observer)=>
 {
     const entry=entries[0];
     if(!entry.isIntersecting) return;
-    loadNewCards()
+    // loadNewCards()
     observer.unobserve(entry.target)
     observer.observe(document.querySelector('.card:last-child'))
 }
@@ -206,3 +206,19 @@ function modifyHeader(){
 
 
 window.addEventListener('scroll',modifyHeader,{passive:true})
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+const tracks=document.querySelectorAll('.marquee-track')
+
+tracks.forEach((track)=>
+{
+    const items=Array.from(track.children);
+
+    items.forEach((item)=>
+    {
+        const duplicate=item.cloneNode(true);
+        duplicate.setAttribute('aria-hidden',true)
+        track.append(duplicate)
+    })
+})
