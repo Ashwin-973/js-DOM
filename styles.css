@@ -4,8 +4,9 @@
     padding:0px;
 }
 img{
-    max-width:70%;
-    /* height:auto; */
+    display:block;
+    max-width: 100%;
+    height:auto;
 }
 h2{
     margin-block:24px;
@@ -100,6 +101,10 @@ body{
     border-radius:16px;
     position:relative; /*again positioned relative to viewport*/
 }
+
+.modal img{
+    max-width:70%;
+}
 .close{
     font-size:20px;
     position:absolute;
@@ -186,3 +191,102 @@ ol{
     transform:translateX(0px);
 }
 
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+.film-marquee{
+    margin-block-start:64px;
+
+}
+
+.film-marquee h2{
+    margin-block-end:24px;
+    text-align: center;
+    font-size:24px;
+}
+
+.marquee-wrapper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee-container{
+    width:100%;
+    max-width:800px;
+    overflow:hidden;
+    padding-block:32px;
+    mask-image:linear-gradient(to right,transparent,black 10% , black 90%,transparent);
+
+}
+
+@keyframes moveLeft{
+    0%{
+        transform:translateX(0%);
+    }
+    100%{
+        transform:translateX(calc(-50% - var(--gap)/2));
+    }
+}
+
+
+.marquee-track{
+    --gap:16px;
+
+    width:max-content;
+    display:flex;
+    gap:var(--gap);
+
+    animation-name:moveLeft;
+    animation-duration:30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    will-change: transform;
+}
+
+.image-container{
+    inline-size: 150px;
+    block-size:100px;
+    overflow:hidden;
+    filter:grayscale(100%) opacity(0.5);
+    transition:all 300ms ease-out;
+}
+
+.image-container:hover{
+    filter:grayscale(0) opacity(1);
+    scale:1.1;
+}
+
+.image-container img{
+    border-radius:8px;
+
+}
+
+.image-container img:hover{
+
+}
+
+
+
+
+@media screen and (min-width:768px){
+
+    .film-marquee h2{ 
+        font-size: 64px;
+    }
+
+    .marquee-container{
+        max-width:120vw;
+    }
+
+    .marquee-track{
+        --gap:32px;
+    }
+
+    .image-container{
+        inline-size: 300px;
+        block-size:200px;
+    }
+
+}
