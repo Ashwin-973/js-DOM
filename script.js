@@ -222,3 +222,38 @@ tracks.forEach((track)=>
         track.append(duplicate)
     })
 })
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+const accordionHeaders=document.querySelectorAll('.accordion-header')
+
+function updateAccordion(){
+    const currentItem=this.parentElement;
+    const currentContent=this.nextElementSibling;
+    const currentHeader=this;
+
+
+    const isOpen=currentHeader.classList.contains('active')
+
+    accordionHeaders.forEach((everyHeader)=>
+    {
+        everyHeader.classList.remove('active')
+        everyHeader.nextElementSibling.style.maxHeight=`0px`
+
+    })
+
+    if(!isOpen){
+        currentHeader.classList.add('active')
+
+        const accordionHeight=currentContent.scrollHeight;
+        console.log(accordionHeight)
+
+        currentContent.style.maxHeight=`${accordionHeight}px`
+    }
+
+}
+
+accordionHeaders.forEach((header)=>
+{
+    header.addEventListener('click',updateAccordion);
+})

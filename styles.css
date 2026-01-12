@@ -290,3 +290,54 @@ ol{
     }
 
 }
+
+/*---------------------------------------------------------------------------------------------------------------------------------------*/
+
+.accordion-section{
+    display:grid;
+    place-content: center;
+    min-height:100vh;
+}
+
+.accordion-container{
+    width:600px;
+    border:#aaa solid 2px;
+    background-color: #000000;
+    border-radius: 32px;
+    overflow:hidden;
+}
+
+.accordion-item{
+    width:100%;
+    border-bottom:1px solid #aaa;   
+
+}
+
+
+.accordion-header{
+    padding-block:16px;
+    padding-inline:16px;
+    width:100%;
+    background-color: #000000;
+    color:#fff;
+    border:none;
+    font-size:20px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow:hidden;
+
+}
+
+.accordion-content{
+    max-height: 0px;
+    overflow:hidden;
+    transition:max-height 300ms ease-in;
+    background-color: rgb(43, 43, 43);
+}
+.accordion-header.active + .accordion-content{
+}
+.content-inner{
+    padding-block:16px;
+    padding-inline:16px;
+}
