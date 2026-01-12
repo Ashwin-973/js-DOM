@@ -239,6 +239,11 @@ function updateAccordion(){
     {
         everyHeader.classList.remove('active')
         everyHeader.nextElementSibling.style.maxHeight=`0px`
+        const icon=everyHeader.querySelector('.icon')
+        icon.classList.remove('fa-minus')
+        icon.classList.add('fa-plus')
+        icon.style.transform="rotate(0deg)"
+
 
     })
 
@@ -249,6 +254,15 @@ function updateAccordion(){
         console.log(accordionHeight)
 
         currentContent.style.maxHeight=`${accordionHeight}px`
+
+        const icon=currentHeader.querySelector('.icon')
+        console.log({icon})
+
+        icon.classList.remove('fa-plus')
+        icon.classList.add('fa-minus')
+        icon.style.transform="rotate(180deg)"
+
+
     }
 
 }

@@ -312,7 +312,9 @@ ol{
     border-bottom:1px solid #aaa;   
 
 }
-
+.icon{
+    transition:transform 300ms ease-in;
+}
 
 .accordion-header{
     padding-block:16px;
